@@ -16,14 +16,14 @@ def main():
             octree.add_color(Color(*pixels[i, j]))
 
     # 256 colors for 8 bits per pixel output image
-    palette = octree.make_palette(512)
+    palette = octree.make_palette(256)
 
     # create palette for 256 color max and save to file
-    palette_image = Image.new('RGB', (32, 32))
+    palette_image = Image.new('RGB', (16, 16))
     palette_pixels = palette_image.load()
     for i, color in enumerate(palette):
         print(i//16," Separadpos ",i%16,color.red)
-        palette_pixels[i % 32, i // 32] = (int(color.red), int(color.green), int(color.blue))
+        palette_pixels[i % 16, i / 16] = (int(color.red), int(color.green), int(color.blue))
     palette_image.save('rainbow_palette.png')
 
     # save output image
